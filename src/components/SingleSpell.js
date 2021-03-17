@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Axios from "axios";
 
 const SingleSpell = () => {
@@ -13,7 +13,7 @@ const SingleSpell = () => {
       const response = await Axios.get(url + endOfUrl);
 
       if (response.data.Error) {
-        setError(results.data.Error);
+        setError(response.data.Error);
       } else {
         setError("");
         setCurrentSpell(response.data);
@@ -22,6 +22,10 @@ const SingleSpell = () => {
       console.log("You have an error", error);
     }
   };
+
+  useEffect(()=>{
+    fetchSingleSpell()
+  }, [fetchSingleSpell])
 
   return !currentSpell.name ? (
     <h1>Loading...</h1>

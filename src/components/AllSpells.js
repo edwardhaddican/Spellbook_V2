@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import Axios from "axios";
-import SearchBar from '../SearchBar'
+import {SearchBar} from "./index.js";
 import { Link } from "react-router-dom";
 
 const AllSpells = () => {
@@ -10,14 +10,14 @@ const AllSpells = () => {
   const [displayedSpells, setDisplayedSpells] = useState([]);
   const [currentClass, setCurrentClass] = useState("");
 
-  const allSpellList = async () => {
+  const allSpellList = useCallback(async () => {
     try {
       let url = "https://www.dnd5eapi.co/api/spells";
 
       const response = await Axios.get(url);
 
       if (response.data.Error) {
-        setError(results.data.Error);
+        setError(response.data.Error);
       } else {
         setError("");
         setAllSpells(response.data.results);
@@ -28,9 +28,9 @@ const AllSpells = () => {
     } catch (error) {
       console.log("You have an error", error);
     }
-  };
+  }, [setAllSpells, setClassSpells, setError]);
 
-  const classSpellList = async () => {
+  const classSpellList = useCallback(async () => {
     try {
       let url = "https://www.dnd5eapi.co";
 
@@ -50,17 +50,23 @@ const AllSpells = () => {
 
       setClassSpells(classSpells);
     } catch (error) {
+      setError(error);
       console.log("You have an error", error);
     }
-  };
+  }, [setClassSpells, setError]);
+
+  useEffect(() => {
+    allSpellList();
+    classSpellList();
+  }, [allSpellList, classSpellList]);
 
   return (
     <div>
       <h1>All Spells</h1>
-      {/* <SearchBar /> */}
+      <SearchBar />
       <div>
-        {this.state.allSpells.map((spell) => {
-          // console.log('eee', spell)
+        {allSpells.map((spell) => {
+          console.log("eee", spell);
           return (
             <div key={spell.index}>
               <Link to={`/allSpells/${spell.index}`}>{spell.name}</Link>

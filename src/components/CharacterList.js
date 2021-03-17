@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 
 const CharacterList = () => {
   const [numberOfCharacters, setNumberOfCharacters] = useState(0);

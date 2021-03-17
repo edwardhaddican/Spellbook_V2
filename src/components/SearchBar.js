@@ -1,5 +1,5 @@
-import React from "react";
-import Axios from "axios";
+import React, {useState} from "react";
+import axios from "axios";
 
 const SearchBar = () => {
   const [search, setSearch] = useState("");
@@ -9,7 +9,7 @@ const SearchBar = () => {
     setSearch(event);
   };
 
-  const fetchSpell = async () => {
+  const fetchSpell = async (event) => {
     event.preventDefault();
     try {
       let url = "https://www.dnd5eapi.co/api/spells";
