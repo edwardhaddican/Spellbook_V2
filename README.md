@@ -10,3 +10,8 @@ For development, first run `npm run start-server` and then separately run `npm r
 React-scripts will load up a dev server on port 3000, but will send API calls to the API server at port 8000, via a proxy.
 
 Photos of the web app:
+
+
+
+
+# make the spell book skin vary based on the wizards class and make it customizable
