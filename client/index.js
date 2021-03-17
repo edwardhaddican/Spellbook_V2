@@ -1,11 +1,19 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Provider} from 'react-redux'
+import {Router} from 'react-router-dom'
+import history from './history'
+import store from './store'
+import App from './app'
 
+// establishes socket connection
+import './socket'
 
-
-// export {default as Navbar} from './navbar'
-// export {default as UserHome} from './user-home'
-export {Login, Signup} from './auth-form'
-export {default as AllSpells} from './AllSpells'
-export {default as SingleSpell} from './SingleSpell'
-// export {default as NewCharacterForm} from './NewCharacterForm'
-export {default as CharacterList} from './CharacterList'
-export {default as SearchBar} from './SearchBar'
+ReactDOM.render(
+  <Provider store={store}>
+    <Router history={history}>
+      <App />
+    </Router>
+  </Provider>,
+  document.getElementById('app')
+)
