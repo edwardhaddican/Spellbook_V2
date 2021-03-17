@@ -1,6 +1,6 @@
 import React from "react";
 import Axios from "axios";
-// import SearchBar from './SearchBar'
+import SearchBar from './SearchBar'
 import { Link } from "react-router-dom";
 
 const AllSpells = () => {

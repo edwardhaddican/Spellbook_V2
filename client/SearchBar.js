@@ -36,6 +36,26 @@ const SearchBar = () => {
       console.log("You have an error", error);
     }
   };
+
+  return (
+    <div className="searchbar-container">
+      <div>
+        <h2>Spell</h2>
+        {error ? <h3 className="banner-container">{error}</h3> : null}
+      </div>
+      <div>
+        <form onSubmit={fetchSpell} className="searchbar-inner-container">
+          <div className="title-searchbar input-group">
+            <label>Spell:</label>
+            <input value={search} required onChange={searchBarUpdate} />
+          </div>
+          <button type="submit" className="search-button">
+            Search
+          </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default SearchBar;
