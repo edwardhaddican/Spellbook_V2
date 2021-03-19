@@ -1,15 +1,18 @@
-import React from 'react'
+import React from "react";
 
-import {Navbar} from './components'
-import Routes from './routes'
+import { Navbar } from "./components";
+import Routes from "./routes";
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <Routes />
+    <div className="main_container">
+      <h1 className="main_title">Spellbook</h1>
+      <div>
+        <Navbar />
+        <Routes />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
