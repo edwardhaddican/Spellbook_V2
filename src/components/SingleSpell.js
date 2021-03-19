@@ -1,57 +1,108 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Axios from "axios";
 
-const SingleSpell = () => {
+const SingleSpell = (props) => {
   const [currentSpell, setCurrentSpell] = useState({});
   const [error, setError] = useState("");
+  const [damageObj, setDamageObj] = useState({});
+  const [damageObjKeys, setDamageObjKeys] = useState([]);
 
-  const fetchSingleSpell = async () => {
+  let spellIndex = props.match.params.spellIndex;
+
+  const fetchSingleSpell = useCallback(async () => {
     try {
       let url = "https://www.dnd5eapi.co/api/spells/";
-      let endOfUrl = this.props.match.params.spellIndex;
 
-      const response = await Axios.get(url + endOfUrl);
+      const response = await Axios.get(url + spellIndex);
 
       if (response.data.Error) {
         setError(response.data.Error);
       } else {
         setError("");
         setCurrentSpell(response.data);
+        setDamageObj(response.data.damage.damage_at_slot_level);
+        setDamageObjKeys(
+          Object.keys(response.data.damage.damage_at_slot_level)
+        );
       }
     } catch (error) {
       console.log("You have an error", error);
     }
-  };
+  }, [spellIndex]);
 
-  useEffect(()=>{
-    fetchSingleSpell()
-  }, [fetchSingleSpell])
+  useEffect(() => {
+    fetchSingleSpell();
+  }, []);
 
   return !currentSpell.name ? (
     <h1>Loading...</h1>
   ) : (
     <div className="single-spell-container">
       <h1>{currentSpell.name}</h1>
-      <p>Spell Level: {currentSpell.level}</p>
-      <p>Casting Time: {currentSpell.casting_time}</p>
+      <p>
+        <span className="spell-property-header">Spell Level:</span>{" "}
+        {currentSpell.level === 0 ? "Cantrip" : currentSpell.level}
+      </p>
+      <p>
+        {" "}
+        <span className="spell-property-header">Casting Time:</span>{" "}
+        {currentSpell.casting_time}
+      </p>
 
       {currentSpell.damage ? (
         <div>
-          <p>Damage Type: {currentSpell.damage.damage_type.name}</p>
-          <p>Damage: {currentSpell.damage.damage_at_slot_level[2]}</p>
+          <p>
+            {" "}
+            <span className="spell-property-header">Damage Type:</span>{" "}
+            {currentSpell.damage.damage_type.name}
+          </p>
+          {damageObjKeys.map((key) => {
+            return (
+              <p key={key}>
+                {" "}
+                <span className="spell-property-header">
+                  Damage at Level {key}:{" "}
+                </span>
+                {damageObj[key]}
+              </p>
+            );
+          })}
         </div>
       ) : null}
 
       {currentSpell.higher_level ? (
-        <p>At Higher Levels: {currentSpell.higher_level[0]}</p>
+        <p>
+          {" "}
+          <span className="spell-property-header">At Higher Levels: </span>{" "}
+          {currentSpell.higher_level[0]}
+        </p>
       ) : null}
-      <p>Duration: {currentSpell.duration}</p>
+      <p>
+        <span className="spell-property-header">Duration: </span>{" "}
+        {currentSpell.duration}
+      </p>
 
-      <p>Components: {currentSpell.components}</p>
-      <p>Material: {currentSpell.material}</p>
-      <p>Concentration: {currentSpell.concentration.toString()}</p>
+      <p>
+        {" "}
+        <span className="spell-property-header">Components:</span>{" "}
+        {currentSpell.components}
+      </p>
+      <p>
+        {" "}
+        <span className="spell-property-header">Material:</span>{" "}
+        {currentSpell.material ? currentSpell.material : "none"}
+      </p>
+      <p>
+        {" "}
+        <span className="spell-property-header">Concentration:</span>{" "}
+        {currentSpell.concentration.toString()}
+      </p>
 
-      <p>Description: {currentSpell.desc}</p>
+      <p>
+        {" "}
+        <span className="spell-property-header">Description:</span>{" "}
+        {currentSpell.desc}
+      </p>
     </div>
   );
 };

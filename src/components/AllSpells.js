@@ -66,7 +66,6 @@ const AllSpells = () => {
       <SearchBar />
       <div>
         {allSpells.map((spell) => {
-          console.log("eee", spell);
           return (
             <div key={spell.index}>
               <Link to={`/allSpells/${spell.index}`}>{spell.name}</Link>
