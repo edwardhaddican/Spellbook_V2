@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback} from "react";
 import Axios from "axios";
 import {SearchBar} from "./index.js";
 import { Link } from "react-router-dom";
+// import pagination from '../utility/pagination'
 
 const AllSpells = () => {
   const [allSpells, setAllSpells] = useState([]);
@@ -9,6 +10,17 @@ const AllSpells = () => {
   const [classSpells, setClassSpells] = useState({});
   const [displayedSpells, setDisplayedSpells] = useState([]);
   const [currentClass, setCurrentClass] = useState("");
+
+  //trying to make dummy data to get the pagination working
+  // const paginationObject = {
+  //   totalItems: 150,
+  //   currentPage: 1,
+  //   pageSize: 12,
+  //   maxPages: 10
+  // }
+
+  // pagination(paginationObject)
+
 
   const allSpellList = useCallback(async () => {
     try {
