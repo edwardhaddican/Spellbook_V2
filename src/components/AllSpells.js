@@ -64,10 +64,10 @@ const AllSpells = () => {
     <div>
       <h1>All Spells</h1>
       <SearchBar />
-      <div>
+      <div className="all_spells_single_spell__main_container">
         {allSpells.map((spell) => {
           return (
-            <div key={spell.index}>
+            <div className="all_spells_single_spell_container" key={spell.index}>
               <Link to={`/allSpells/${spell.index}`}>{spell.name}</Link>
             </div>
           );

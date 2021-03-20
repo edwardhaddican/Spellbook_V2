@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 const SearchBar = () => {
@@ -38,20 +38,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="searchbar-container">
-      <div>
-        <h2>Spell</h2>
-        {error ? <h3 className="banner-container">{error}</h3> : null}
-      </div>
+    <div className="searchbar_container">
+      <div>{error ? <h3 className="banner-container">{error}</h3> : null}</div>
       <div>
         <form onSubmit={fetchSpell} className="searchbar-inner-container">
           <div className="title-searchbar input-group">
-            <label>Spell:</label>
-            <input value={search} required onChange={searchBarUpdate} />
+            <label className="spell-property-header">Spell:</label>
+            <input className="searchbar_form_input" value={search} required onChange={searchBarUpdate} />
+            <button type="submit" className="search-button">
+              Search
+            </button>
           </div>
-          <button type="submit" className="search-button">
-            Search
-          </button>
         </form>
       </div>
     </div>
