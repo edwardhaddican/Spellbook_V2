@@ -17,14 +17,45 @@ body {
 }
 
 .all_spells_single_spell_container {
-  border: 1px solid black;
+  /* border: 1px solid black; */
   padding: 0.5rem;
-  background-color: white;
+  /* background-color: white; */
   margin: 0.5rem;
   flex: 0 0 33;
   width: 25%;
   /* width: 50%; */
 }
+
+.spell_text{
+  font-family: cursive, "Lucida Calligraphy";
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  font-weight: bold;
+}
+.spell_text_header{
+  font-family: cursive, "Lucida Calligraphy";
+  color: black;
+  font-size: 25px;
+  font-weight: 900;
+}
+
+.spell_text:hover {
+  color: red;
+}
+
+/* SingleSpell*/
+.single-spell-container {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.5rem;
+  background-image: url("/images/lightColoredParchementPaperBackground.png");
+}
+
+.spell-property-header {
+  font-weight: bold;
+}
+
 
 /* Main*/
 .main_container {
@@ -93,13 +124,4 @@ body {
   cursor: pointer;
 }
 
-/* SingleSpell*/
-.single-spell-container {
-  border: 1px solid black;
-  background-color: white;
-  padding: 0.5rem;
-}
 
-.spell-property-header {
-  font-weight: bold;
-}

@@ -80,7 +80,7 @@ const AllSpells = () => {
         {allSpells.map((spell) => {
           return (
             <div className="all_spells_single_spell_container" key={spell.index}>
-              <Link to={`/allSpells/${spell.index}`}>{spell.name}</Link>
+              <Link to={`/allSpells/${spell.index}`} className="spell_text">{spell.name}</Link>
             </div>
           );
         })}

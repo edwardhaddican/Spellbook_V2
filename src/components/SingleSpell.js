@@ -38,7 +38,7 @@ const SingleSpell = (props) => {
     <h1>Loading...</h1>
   ) : (
     <div className="single-spell-container">
-      <h1>{currentSpell.name}</h1>
+      <h1 className="spell_text_header">{currentSpell.name}</h1>
       <p>
         <span className="spell-property-header">Spell Level:</span>{" "}
         {currentSpell.level === 0 ? "Cantrip" : currentSpell.level}
