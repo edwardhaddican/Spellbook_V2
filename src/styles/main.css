@@ -3,6 +3,60 @@ body {
   background-color: #d1e4f6;
 }
 
+/* AllCharacters*/
+
+.all_characters_outer_container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.all_characters_total_number{
+  align-self: flex-start;
+  margin-left: 1rem;
+}
+
+.all_characters_inner_container {
+  /* width: 33% */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* flex-direction: column; */
+  /* width:33%; */
+  /* flex-basis: 33%; */
+  align-items: center;
+ }
+
+.image_container {
+  height: 300px;
+  width: 100%;
+  position: relative;
+}
+
+.image_container img {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+}
+
+.character_container{
+  background-color: grey;
+  border: 1px solid black;
+  margin: .5rem;
+  padding: .5rem;
+  border-radius: 25px;
+  width: 27%;
+  flex-basis: 27%;
+
+}
+
+.character_property_header {
+  font-weight: bold;
+}
+
 /* AllSpells*/
 
 .all_spells_single_spell__main_container {
