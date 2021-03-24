@@ -20,6 +20,9 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
             <Link className="nav_item" to="/allspells">
               All Spells
             </Link>
+            <Link className="nav_item" to="/classSpells">
+              Class Spells
+            </Link>
           </div>
           <div className="nav_container_right">
             <a className="nav_item" href="#" onClick={handleClick}>

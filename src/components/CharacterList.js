@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import testCharDataArray from "./dummyCharData";
+import { Link } from "react-router-dom";
 
 const CharacterList = () => {
   const [numberOfCharacters, setNumberOfCharacters] = useState(0);
@@ -66,9 +67,11 @@ const CharacterList = () => {
                 <span className="character-property-header ">Charisma: </span>
                 {character.charisma}
               </ul>
-              <div>
-                <button className='character-spellbook-button'>SpellBook</button>
-              </div>
+              <Link to={`/characters/${character.id}`}>
+                <button className="character-spellbook-button">
+                  SpellBook
+                </button>
+              </Link>
             </div>
           );
         })}

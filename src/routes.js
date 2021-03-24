@@ -8,7 +8,8 @@ import {
   UserHome,
   NewCharacterForm,
   AllSpells,
-  SingleSpell
+  SingleSpell,
+  CharacterSpellbook
 } from './components'
 import {me} from './store'
 
@@ -42,6 +43,11 @@ class Routes extends Component {
               exact
               path="/allSpells/:spellIndex"
               component={SingleSpell}
+            />
+            <Route
+              exact
+              path="/characters/:characterId"
+              component={CharacterSpellbook}
             />
           </Switch>
         )}
