@@ -66,6 +66,9 @@ const CharacterList = () => {
                 <span className="character-property-header ">Charisma: </span>
                 {character.charisma}
               </ul>
+              <div>
+                <button className='character-spellbook-button'>SpellBook</button>
+              </div>
             </div>
           );
         })}

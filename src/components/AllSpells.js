@@ -1,6 +1,6 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Axios from "axios";
-import {SearchBar} from "./index.js";
+import { SearchBar } from "./index.js";
 import { Link } from "react-router-dom";
 // import pagination from '../utility/pagination'
 
@@ -10,6 +10,7 @@ const AllSpells = () => {
   const [classSpells, setClassSpells] = useState({});
   const [displayedSpells, setDisplayedSpells] = useState([]);
   const [currentClass, setCurrentClass] = useState("");
+  const [selectedClass, setSelectedClass] = useState(null);
 
   //trying to make dummy data to get the pagination working
   // const paginationObject = {
@@ -21,6 +22,9 @@ const AllSpells = () => {
 
   // pagination(paginationObject)
 
+  const addSpellToMySpellListButton = () => {
+    //add funtionality to add spells to each characters own spell list
+  };
 
   const allSpellList = useCallback(async () => {
     try {
@@ -59,7 +63,7 @@ const AllSpells = () => {
         result[playerClass] = element.data.results;
         return result;
       }, {});
-
+      console.log("class spells", classSpells);
       setClassSpells(classSpells);
     } catch (error) {
       setError(error);
@@ -75,15 +79,44 @@ const AllSpells = () => {
   return (
     <div>
       <h1>All Spells</h1>
-      <SearchBar />
-      <div className="all_spells_single_spell__main_container">
-        {allSpells.map((spell) => {
-          return (
-            <div className="all_spells_single_spell_container" key={spell.index}>
-              <Link to={`/allSpells/${spell.index}`} className="spell_text">{spell.name}</Link>
-            </div>
-          );
-        })}
+      <SearchBar
+        selectedClass={selectedClass}
+        setSelectedClass={setSelectedClass}
+      />
+      <div className="all_spells_single_spell_main_container">
+        {selectedClass && classSpells[selectedClass].length >= 1 ? (
+          classSpells[selectedClass].map((spell) => {
+            return (
+              <div
+                className="all_spells_single_spell_container"
+                key={spell.index}
+              >
+                <Link to={`/allSpells/${spell.index}`} className="spell_text">
+                  {spell.name}
+                </Link>
+                <button className="all-spells-add-spell-button">+</button>
+              </div>
+            );
+          })
+        ) : selectedClass ? (
+          <div>
+            <p>This Class does not cast spells</p>
+          </div>
+        ) : (
+          allSpells.map((spell) => {
+            return (
+              <div
+                className="all_spells_single_spell_container"
+                key={spell.index}
+              >
+                <Link to={`/allSpells/${spell.index}`} className="spell_text">
+                  {spell.name}
+                </Link>
+                <button className="all-spells-add-spell-button">+</button>
+              </div>
+            );
+          })
+        )}
       </div>
     </div>
   );

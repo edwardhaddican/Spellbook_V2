@@ -1,7 +1,24 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Select from "react-select";
 
-const SearchBar = () => {
+const classOptions = [
+  { value: "barbarian", label: "Barbarian" },
+  { value: "bard", label: "Bard" },
+  { value: "cleric", label: "Cleric" },
+  { value: "druid", label: "Druid" },
+  { value: "fighter", label: "Fighter" },
+  { value: "monk", label: "Monk" },
+  { value: "paladin", label: "Paladin" },
+  { value: "ranger", label: "Ranger" },
+  { value: "rogue", label: "Rogue" },
+  { value: "sorcerer", label: "Sorcerer" },
+  { value: "warlock", label: "Warlock" },
+  { value: "wizard", label: "Wizard" },
+  { value: null, label: "Select" }
+];
+
+const SearchBar = ({ selectedClass, setSelectedClass }) => {
   const [search, setSearch] = useState("");
   const [error, setError] = useState("");
 
@@ -40,16 +57,32 @@ const SearchBar = () => {
   return (
     <div className="searchbar_container">
       <div>{error ? <h3 className="banner-container">{error}</h3> : null}</div>
-      <div>
-        <form onSubmit={fetchSpell} className="searchbar-inner-container">
-          <div className="title-searchbar input-group">
+      <div className="searchbar_inner_container">
+        <form onSubmit={fetchSpell}>
+          <div className="searchbar-form-container">
             <label className="spell-property-header">Spell:</label>
-            <input className="searchbar_form_input" value={search} required onChange={searchBarUpdate} />
+            <input
+              className="searchbar_form_input"
+              value={search}
+              required
+              onChange={searchBarUpdate}
+            />
             <button type="submit" className="search-button">
               Search
             </button>
           </div>
         </form>
+
+        <div className="searchbar-selector-container">
+          <label className="spell-property-header">Search by class:</label>
+          <Select
+            options={classOptions}
+            className="searchbar-select-input"
+            onChange={(event) => {
+              setSelectedClass(event.value);
+            }}
+          />
+        </div>
       </div>
     </div>
   );
