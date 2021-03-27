@@ -21,7 +21,7 @@ const CharacterList = () => {
       <div className="all_characters_inner_container">
         {allCharacters.map((character) => {
           return (
-            <div key={character.id} className="character_container">
+            <div key={character.id + character.characterName} className="character_container">
               <h3>
                 <span className="character_property_header ">
                   Character Name:{" "}
@@ -55,9 +55,9 @@ const CharacterList = () => {
               </ul>
               <ul>
                 <span className="character-property-header ">
-                  Intelulgence:{" "}
+                  Intelligence:{" "}
                 </span>
-                {character.intelulgence}
+                {character.intelligence}
               </ul>
               <ul>
                 <span className="character-property-header ">Wisdom: </span>

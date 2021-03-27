@@ -47,7 +47,7 @@ const dummyCharacter4 = {
   id: 1,
   imageUrl:
     "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-  characterName: "bob",
+  characterName: "Akroc",
   level: 1,
   class: "Paladin",
   strength: 8,
@@ -62,7 +62,7 @@ const dummyCharacter5 = {
   id: 2,
   imageUrl:
     "https://i.pinimg.com/564x/8f/d0/a7/8fd0a73ba1881af2ec004648285516cf.jpg",
-  characterName: "Grandma",
+  characterName: "Helix",
   level: 5,
   class: "Wizard",
   strength: 6,
@@ -77,7 +77,7 @@ const dummyCharacter6 = {
   id: 3,
   imageUrl:
     "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-  characterName: "Grom Bull",
+  characterName: "Victor",
   level: 1,
   class: "Mechanic",
   strength: 8,

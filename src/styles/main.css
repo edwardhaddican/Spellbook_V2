@@ -64,6 +64,12 @@ body {
   grr button will not align to center */
 }
 
+/* Character Spellbook*/
+
+.character-spellbook-main-container{
+  background-color: white;
+}
+
 /* AllSpells*/
 
 .all_spells_single_spell_main_container {
