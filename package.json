@@ -1,13 +1,14 @@
 {
-  "name": "Spellbook",
+  "name": "spellbook",
   "version": "1.0.0",
   "description": "A spell editor for DND 5th ed",
   "main": "index.js",
   "scripts": {
+    "build": "react-scripts build && mv build ./server/public",
+    "seed": "node script/seed.js",
     "start-dev": "NODE_ENV='development' react-scripts start",
     "start": "NODE_ENV='production' npm run build & NODE_ENV='production' npm run start-server",
-    "start-server": "nodemon server -e html,js,scss --ignore public --ignore src",
-    "build": "react-scripts build && mv build ./server/public"
+    "start-server": "nodemon server -e html,js,scss --ignore public --ignore src"
   },
   "keywords": [],
   "author": "",

@@ -38,9 +38,9 @@ async function seed() {
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-      characterName: "bob",
+      name: "bob",
       level: 1,
-      class: "Paladin",
+      class: "monk",
       strength: 8,
       dexterity: 8,
       constitution: 8,
@@ -52,9 +52,9 @@ async function seed() {
     Character.create({
       imageUrl:
         "https://i.pinimg.com/564x/8f/d0/a7/8fd0a73ba1881af2ec004648285516cf.jpg",
-      characterName: "Grandma",
+      name: "Grandma",
       level: 5,
-      class: "Wizard",
+      class: "wizard",
       strength: 6,
       dexterity: 6,
       constitution: 8,
@@ -66,9 +66,9 @@ async function seed() {
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-      characterName: "Grom Bull",
+      name: "Grom Bull",
       level: 1,
-      class: "Mechanic",
+      class: "barbarian",
       strength: 8,
       dexterity: 8,
       constitution: 8,
@@ -78,12 +78,11 @@ async function seed() {
     }),
 
     Character.create({
-      id: 1,
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-      characterName: "Akroc",
+      name: "Vlad",
       level: 1,
-      class: "Paladin",
+      class: "paladin",
       strength: 8,
       dexterity: 8,
       constitution: 8,
@@ -95,9 +94,9 @@ async function seed() {
     Character.create({
       imageUrl:
         "https://i.pinimg.com/564x/8f/d0/a7/8fd0a73ba1881af2ec004648285516cf.jpg",
-      characterName: "Helix",
+      name: "Helix",
       level: 5,
-      class: "Wizard",
+      class: "wizard",
       strength: 6,
       dexterity: 6,
       constitution: 8,
@@ -109,9 +108,9 @@ async function seed() {
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
-      characterName: "Victor",
+      name: "Victor",
       level: 1,
-      class: "Mechanic",
+      class: "barbarian",
       strength: 8,
       dexterity: 8,
       constitution: 8,
