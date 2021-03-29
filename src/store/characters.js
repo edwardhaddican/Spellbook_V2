@@ -41,69 +41,62 @@ export const updateCharacter= character => {
 }
 
 // Thunk Creators  pick up from here!!!!!!!!
-export const fetchProducts = category => {
+export const fetchCharacters = () => {
   return async dispatch => {
     try {
-      if (!category || category.category === 'all-products') {
-        const res = await axios.get('/api/products')
-        dispatch(setProducts(res.data))
-      } else {
-        const res = await axios.get(
-          `/api/products/category/${category.category}`
-        )
-        dispatch(setProducts(res.data))
-      }
+      const res = await axios.get('/api/characters')
+        dispatch(setCharacters(res.data))
     } catch (error) {
       console.log(error)
     }
   }
 }
 
-export const createProduct = newProductData => {
+export const createCharacter = newCharacterData => {
   return async dispatch => {
-    const {data} = await axios.post('/api/products', newProductData)
-    dispatch(addProduct(data))
+    const {data} = await axios.post('/api/characters', newCharacterData)
+    dispatch(addCharacter(data))
   }
 }
 
-export const deleteProduct = id => {
+export const deleteCharacter= id => {
   return async dispatch => {
-    await axios.delete('/api/products/' + id)
-    dispatch(removeProduct(id))
+    await axios.delete('/api/characters/' + id)
+    dispatch(removeCharacter(id))
   }
 }
 
-export const editProduct = product => {
+export const editProduct = character => {
   return async dispatch => {
-    const {data} = await axios.put('/api/products/' + product.id, product)
-    dispatch(updateProduct(data))
-    dispatch(setProduct(data))
+    const {data} = await axios.put('/api/characters/' + character.id, character)
+    dispatch(updateCharacter(data))
+    dispatch(setCharacter(data))
   }
 }
 
 // Products Reducer
-const productsReducer = (state = initialState, action) => {
+const charactersReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS:
-      return {...state, products: action.products}
-    case ADD_PRODUCTS:
-      return {...state, products: state.products.concat([action.product])}
-    case DELETE_PRODUCT: {
-      const allProducts = state.products
-      const filteredProducts = allProducts.filter(
-        product => product.id !== action.productId
+    case SET_CHARACTERS:
+      return {...state, characters: action.characters}
+    case ADD_CHARACTERS:
+      return {...state, characters: state.characters.concat([action.character])}
+    case DELETE_CHARACTER: {
+      const allCharacters = state.characters
+      const filteredCharacters = allCharacters.filter(
+        character => character.id !== action.characterId
       )
-      state.products = filteredProducts
+      state.characters = filteredCharacters
       return {...state}
     }
-    case EDIT_PRODUCT:
+    case EDIT_CHARACTER:
       return {
         ...state,
-        products: state.products.map(product => {
-          if (product.id === action.product.id) {
-            return action.product
+        characters: state.characters.map(character => {
+          if (character.id === action.character.id) {
+            return action.character
           } else {
-            return product
+            return character
           }
         })
       }
@@ -112,4 +105,4 @@ const productsReducer = (state = initialState, action) => {
   }
 }
 
-export default productsReducer
+export default charactersReducer
