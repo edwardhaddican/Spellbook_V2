@@ -3,7 +3,6 @@
   background-color: #d1e4f6;
 } */
 
-
 /* App.js */
 .main-container {
   width: 80%;
@@ -16,35 +15,33 @@
   text-align: center;
 }
 
-.header-main-container{
+.header-main-container {
   display: flex;
   background-color: black;
 }
 
-.spellbook-image{
+.spellbook-image {
   width: 75px;
   height: 75px;
   margin-right: 1rem;
   border: solid, black;
-  margin-left: .25rem;
-  margin-top: .25rem;
-  margin-bottom: .25rem;
+  margin-left: 0.25rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
 }
-
-
 
 /* AuthForm*/
 
-.auth-form-main-container{
+.auth-form-main-container {
   display: flex;
   justify-content: center;
   align-content: center;
   width: 40%;
   height: 50%;
-  background-color:grey;
-  margin: 100px auto
+  background-color: grey;
+  margin: 100px auto;
 }
-.auth-form-inner-container{
+.auth-form-inner-container {
   margin-top: 5rem;
   margin-bottom: 5rem;
   display: flex;
@@ -52,13 +49,13 @@
   flex-direction: column;
 }
 
-.auth-form{
-  padding-bottom: .5rem;
+.auth-form {
+  padding-bottom: 0.5rem;
 }
 
 /* AllCharacters*/
 
-.all_characters_outer_container{
+.all_characters_outer_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,7 +63,7 @@
   background-color: white;
 }
 
-.all_characters_total_number{
+.all_characters_total_number {
   align-self: flex-start;
   margin-left: 1rem;
 }
@@ -80,7 +77,7 @@
   /* width:33%; */
   /* flex-basis: 33%; */
   align-items: center;
- }
+}
 
 .image_container {
   height: 300px;
@@ -95,22 +92,21 @@
   position: absolute;
 }
 
-.character_container{
+.character_container {
   background-color: grey;
   border: 1px solid black;
-  margin: .5rem;
-  padding: .5rem;
+  margin: 0.5rem;
+  padding: 0.5rem;
   border-radius: 25px;
   width: 27%;
   flex-basis: 27%;
-
 }
 
 .character_property_header {
   font-weight: bold;
 }
 
-.character-spellbook-button{
+.character-spellbook-button {
   /* align-self: center;
   position: relative;
 
@@ -119,14 +115,14 @@
 
 /* Character Spellbook*/
 
-.character-spellbook-main-container{
+.character-spellbook-main-container {
   background-color: white;
 }
 
 /* AllSpells*/
 
-.all-spells-header{
- margin-left: 43%;
+.all-spells-header {
+  margin-left: 43%;
 }
 
 .all_spells_single_spell_main_container {
@@ -148,16 +144,19 @@
   flex: 0 0 33;
   width: 25%;
   /* width: 50%; */
+  /* display:flex;
+  justify-content: space-between;
+  align-items: center; */
 }
 
-.spell_text{
+.spell_text {
   font-family: cursive, "Lucida Calligraphy";
   text-decoration: none;
   color: black;
   font-size: 18px;
   font-weight: bold;
 }
-.spell_text_header{
+.spell_text_header {
   font-family: cursive, "Lucida Calligraphy";
   color: black;
   font-size: 25px;
@@ -168,8 +167,8 @@
   color: red;
 }
 
-.all-spells-add-spell-button{
-  margin-left: .5rem;
+.all-spells-add-spell-button {
+  margin-right: 0.5rem;
   color: red;
   background-color: black;
 }
@@ -186,8 +185,6 @@
   font-weight: bold;
   color: white;
 }
-
-
 
 /* NavBar*/
 
@@ -226,36 +223,38 @@
 }
 
 .searchbar_inner_container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   width: 100%;
   height: 85px;
-  margin-left: 10%;
-  margin-right: 10%;
-  background-color:black;
+  background-color: black;
 }
 
-.searchbar-form-container{
-  margin-top: .5rem;
+.searchbar-form-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 90%;
+  margin: 0.5rem auto 0;
 }
 
 .searchbar_form_input {
-  width: 550px;
+  flex-grow: 1;
+  margin-left: .5rem;
+
 }
 
-.searchbar-selector-container{
-  margin-top: .5rem;
+.searchbar-selector-container {
   display: flex;
   flex-direction: row;
-  align-items:center;
-  align-self:flex-start;
-  margin-left: 10%;
+  align-items: center;
+  align-self: flex-start;
+  width: 90%;
+  margin: 0.5rem auto 0;
 }
 
-.searchbar-select-input{
-  width: 100px;
-  margin-left: .5rem;
+.searchbar-select-input {
+  display: inline-block;
+  width: 30%;
+  margin-left: 0.5rem;
 }
 
 .error_message {
@@ -270,4 +269,9 @@
   cursor: pointer;
 }
 
-
+.searchbar-header {
+  font-weight: bold;
+  color: white;
+  width: 115px;
+  display: block;
+}

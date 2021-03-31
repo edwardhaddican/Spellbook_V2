@@ -15,7 +15,7 @@ const classOptions = [
   { value: "sorcerer", label: "Sorcerer" },
   { value: "warlock", label: "Warlock" },
   { value: "wizard", label: "Wizard" },
-  { value: null, label: "Select" }
+  { value: null, label: "Select" },
 ];
 
 const SearchBar = ({ selectedClass, setSelectedClass }) => {
@@ -58,23 +58,21 @@ const SearchBar = ({ selectedClass, setSelectedClass }) => {
     <div className="searchbar_container">
       <div>{error ? <h3 className="banner-container">{error}</h3> : null}</div>
       <div className="searchbar_inner_container">
-        <form onSubmit={fetchSpell}>
-          <div className="searchbar-form-container">
-            <label className="spell-property-header">Spell:</label>
-            <input
-              className="searchbar_form_input"
-              value={search}
-              required
-              onChange={searchBarUpdate}
-            />
-            <button type="submit" className="search-button">
-              Search
-            </button>
-          </div>
+        <form onSubmit={fetchSpell} className="searchbar-form-container">
+          <label className="searchbar-header">Spell:</label>
+          <input
+            className="searchbar_form_input"
+            value={search}
+            required
+            onChange={searchBarUpdate}
+          />
+          <button type="submit" className="search-button">
+            Search
+          </button>
         </form>
 
         <div className="searchbar-selector-container">
-          <label className="spell-property-header">Search by class:</label>
+          <label className="searchbar-header">Search by class:</label>
           <Select
             options={classOptions}
             className="searchbar-select-input"
