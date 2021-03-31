@@ -66,7 +66,7 @@ export const deleteCharacter= id => {
   }
 }
 
-export const editProduct = character => {
+export const editCharacter = character => {
   return async dispatch => {
     const {data} = await axios.put('/api/characters/' + character.id, character)
     dispatch(updateCharacter(data))
@@ -74,7 +74,7 @@ export const editProduct = character => {
   }
 }
 
-// Products Reducer
+// Character Reducer
 const charactersReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CHARACTERS:

@@ -1,12 +1,12 @@
-const crypto = require('crypto')
-const Sequelize = require('sequelize')
-const db = require('../db')
+const crypto = require("crypto");
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Character = db.define('character', {
+const Character = db.define("character", {
   name: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
   },
   level: {
     type: Sequelize.INTEGER,
@@ -14,25 +14,25 @@ const Character = db.define('character', {
     defaultValue: 1,
     validate: {
       min: 1,
-      max: 20
-    }
+      max: 20,
+    },
   },
   class: {
     type: Sequelize.ENUM(
-      'barbarian',
-      'bard',
-      'cleric',
-      'druid',
-      'fighter',
-      'monk',
-      'paladin',
-      'ranger',
-      'rogue',
-      'sorcerer',
-      'warlock',
-      'wizard'
+      "barbarian",
+      "bard",
+      "cleric",
+      "druid",
+      "fighter",
+      "monk",
+      "paladin",
+      "ranger",
+      "rogue",
+      "sorcerer",
+      "warlock",
+      "wizard"
     ),
-    allowNull: false
+    allowNull: false,
   },
   attributeStrength: {
     type: Sequelize.INTEGER,
@@ -40,8 +40,8 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
+      max: 24,
+    },
   },
   attributeDexterity: {
     type: Sequelize.INTEGER,
@@ -49,8 +49,8 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
+      max: 24,
+    },
   },
   attributeConstitution: {
     type: Sequelize.INTEGER,
@@ -58,8 +58,8 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
+      max: 24,
+    },
   },
   attributeIntelligence: {
     type: Sequelize.INTEGER,
@@ -67,8 +67,8 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
+      max: 24,
+    },
   },
   attributeWisdom: {
     type: Sequelize.INTEGER,
@@ -76,8 +76,8 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
+      max: 24,
+    },
   },
   attributeCharisma: {
     type: Sequelize.INTEGER,
@@ -85,9 +85,13 @@ const Character = db.define('character', {
     defaultValue: 8,
     validate: {
       min: 1,
-      max: 24
-    }
-  }
-})
+      max: 24,
+    },
+  },
+  isPublic: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+});
 
-module.exports = Character
+module.exports = Character;

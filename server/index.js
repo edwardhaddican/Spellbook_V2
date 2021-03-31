@@ -52,9 +52,11 @@ const createApp = () => {
   app.use(compression())
 
   // session middleware with passport
+
+  //******add the secret to precess .env */
   app.use(
     session({
-      secret: process.env.SESSION_SECRET || 'my best friend is Cody',
+      secret: process.env.SESSION_SECRET || 'as86ashfl2@#$SAf3easdf32',
       store: sessionStore,
       resave: false,
       saveUninitialized: false
@@ -64,6 +66,7 @@ const createApp = () => {
   app.use(passport.session())
 
   // auth and api routes
+
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
 

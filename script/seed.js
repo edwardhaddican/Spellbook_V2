@@ -39,6 +39,7 @@ async function seed() {
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
       name: "bob",
+      userId: 2,
       level: 1,
       class: "monk",
       strength: 8,
@@ -47,12 +48,14 @@ async function seed() {
       intelligence: 8,
       wisdom: 8,
       charisma: 8,
+      isPublic: false
     }),
 
     Character.create({
       imageUrl:
         "https://i.pinimg.com/564x/8f/d0/a7/8fd0a73ba1881af2ec004648285516cf.jpg",
       name: "Grandma",
+      userId: 2,
       level: 5,
       class: "wizard",
       strength: 6,
@@ -61,12 +64,14 @@ async function seed() {
       intelligence: 20,
       wisdom: 6,
       charisma: 16,
+      isPublic: true
     }),
 
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
       name: "Grom Bull",
+      userId: 3,
       level: 1,
       class: "barbarian",
       strength: 8,
@@ -75,12 +80,14 @@ async function seed() {
       intelligence: 8,
       wisdom: 8,
       charisma: 8,
+      isPublic: true
     }),
 
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
       name: "Vlad",
+      userId: 3,
       level: 1,
       class: "paladin",
       strength: 8,
@@ -89,12 +96,14 @@ async function seed() {
       intelligence: 8,
       wisdom: 8,
       charisma: 8,
+      isPublic: true
     }),
 
     Character.create({
       imageUrl:
         "https://i.pinimg.com/564x/8f/d0/a7/8fd0a73ba1881af2ec004648285516cf.jpg",
       name: "Helix",
+      userId: 3,
       level: 5,
       class: "wizard",
       strength: 6,
@@ -103,12 +112,14 @@ async function seed() {
       intelligence: 20,
       wisdom: 6,
       charisma: 16,
+      isPublic: false
     }),
 
     Character.create({
       imageUrl:
         "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031",
       name: "Victor",
+      userId: 3,
       level: 1,
       class: "barbarian",
       strength: 8,
@@ -117,11 +128,12 @@ async function seed() {
       intelligence: 8,
       wisdom: 8,
       charisma: 8,
+      isPublic: false
     }),
   ]);
 
   console.log(`seeded ${users.length} users`);
-  console.log(`seeded ${characters.length} products`);
+  console.log(`seeded ${characters.length} characters`);
   console.log(`seeded successfully`);
 }
 
