@@ -24,6 +24,8 @@ const AllSpells = () => {
 
   const addSpellToMySpellListButton = () => {
     //add funtionality to add spells to each characters own spell list
+
+    console.log("you clicked on the add spell to spell list button")
   };
 
   const allSpellList = useCallback(async () => {
@@ -105,7 +107,9 @@ const AllSpells = () => {
                 <Link to={`/allSpells/${spell.index}`} className="spell_text">
                   {spell.name}
                 </Link>
-                <button className="all-spells-add-spell-button">+</button>
+                <button className="all-spells-add-spell-button" onClick={()=>{
+                  addSpellToMySpellListButton()
+                }}>+</button>
               </div>
             );
           })
@@ -123,7 +127,9 @@ const AllSpells = () => {
                 <Link to={`/allSpells/${spell.index}`} className="spell_text">
                   {spell.name}
                 </Link>
-                <button className="all-spells-add-spell-button">+</button>
+                <button className="all-spells-add-spell-button" onClick={()=>{
+                  addSpellToMySpellListButton()
+                }}>+</button>
               </div>
             );
           })

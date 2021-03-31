@@ -1,7 +1,37 @@
-body {
-  /* background-color: #B9D6F2; */
+/* body {
+  background-color: #B9D6F2;
   background-color: #d1e4f6;
+} */
+
+
+/* App.js */
+.main-container {
+  width: 80%;
+  margin: 0 auto;
 }
+
+/* Header */
+.main-title {
+  color: red;
+  text-align: center;
+}
+
+.header-main-container{
+  display: flex;
+  background-color: black;
+}
+
+.spellbook-image{
+  width: 75px;
+  height: 75px;
+  margin-right: 1rem;
+  border: solid, black;
+  margin-left: .25rem;
+  margin-top: .25rem;
+  margin-bottom: .25rem;
+}
+
+
 
 /* AuthForm*/
 
@@ -154,24 +184,17 @@ body {
 
 .spell-property-header {
   font-weight: bold;
+  color: white;
 }
 
 
-/* Main*/
-.main_container {
-  width: 80%;
-  margin: 0 auto;
-}
-.main_title {
-  color: black;
-  text-align: center;
-}
+
 /* NavBar*/
 
 .nav_container {
   border: 1px solid black;
   padding: 0.5rem;
-  background-color: gray;
+  background-color: #454545;
   display: flex;
   justify-content: space-between;
 }
@@ -210,7 +233,7 @@ body {
   height: 85px;
   margin-left: 10%;
   margin-right: 10%;
-  background-color:grey;
+  background-color:black;
 }
 
 .searchbar-form-container{
