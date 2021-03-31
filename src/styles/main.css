@@ -95,6 +95,10 @@ body {
 
 /* AllSpells*/
 
+.all-spells-header{
+ margin-left: 43%;
+}
+
 .all_spells_single_spell_main_container {
   display: flex;
   flex-wrap: wrap;

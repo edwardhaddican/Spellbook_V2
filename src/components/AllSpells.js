@@ -76,9 +76,20 @@ const AllSpells = () => {
     classSpellList();
   }, [allSpellList, classSpellList]);
 
+  const makeFirstLetterCap = (currentSelectedClass) => {
+    const arrayOfLetters = currentSelectedClass.split("");
+    let firstLetter = arrayOfLetters.shift();
+    firstLetter = firstLetter.toUpperCase();
+    arrayOfLetters.unshift(firstLetter);
+    let fullWord = arrayOfLetters.join("");
+    return fullWord;
+  };
+
   return (
     <div>
-      <h1>All Spells</h1>
+      <h1 className="all-spells-header">
+        {selectedClass ? `${makeFirstLetterCap(selectedClass)}` : "All Spells"}
+      </h1>
       <SearchBar
         selectedClass={selectedClass}
         setSelectedClass={setSelectedClass}

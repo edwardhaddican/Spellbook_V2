@@ -7,3 +7,5 @@ export {default as NewCharacterForm} from './NewCharacterForm'
 export {default as CharacterList} from './CharacterList'
 export {default as CharacterSpellbook} from './CharacterSpellbook'
 export {default as SearchBar} from './SearchBar'
+export {default as ClassSpells} from './ClassSpells'
+
