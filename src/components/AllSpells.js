@@ -11,6 +11,7 @@ const AllSpells = () => {
   const [displayedSpells, setDisplayedSpells] = useState([]);
   const [currentClass, setCurrentClass] = useState("");
   const [selectedClass, setSelectedClass] = useState(null);
+  const [selectedSpellLevel, setSelectedSpellLevel] = useState(null);
 
   //trying to make dummy data to get the pagination working
   // const paginationObject = {
@@ -40,8 +41,6 @@ const AllSpells = () => {
         setError("");
         setAllSpells(response.data.results);
         setClassSpells(response.data.results);
-
-        console.log("state", allSpells);
       }
     } catch (error) {
       console.log("You have an error", error);
@@ -65,10 +64,9 @@ const AllSpells = () => {
         result[playerClass] = element.data.results;
         return result;
       }, {});
-      console.log("class spells", classSpells);
       setClassSpells(classSpells);
-    } catch (error) {
-      setError(error);
+    } catch (err) {
+      setError(err);
       console.log("You have an error", error);
     }
   }, [setClassSpells, setError]);
@@ -87,14 +85,25 @@ const AllSpells = () => {
     return fullWord;
   };
 
+  // const searchForSpellByLevel = (spellLevel) => {
+  //   if(spellLevel){
+
+  //   }
+
+  // };
+
   return (
     <div>
       <h1 className="all-spells-header">
-        {selectedClass ? `${makeFirstLetterCap(selectedClass)}` : "All Spells"}
+        {selectedClass
+          ? `${makeFirstLetterCap(selectedClass)} Spells`
+          : "All Spells"}
       </h1>
       <SearchBar
         selectedClass={selectedClass}
         setSelectedClass={setSelectedClass}
+        selectedSpellLevel={selectedSpellLevel}
+        setSelectedSpellLevel={setSelectedSpellLevel}
       />
       <div className="all_spells_single_spell_main_container">
         {selectedClass && classSpells[selectedClass].length >= 1 ? (

@@ -29,7 +29,7 @@ const CharacterList = () => {
                 {character.characterName}
               </h3>
               <div className="image_container">
-                <img src={character.imageUrl} />
+                <img src={character.imageUrl} alt="The character's portrait"/>
               </div>
               <ul>
                 <span className="character_property_header">Level: </span>

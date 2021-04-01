@@ -1,168 +1,152 @@
-import React from 'react'
-import {connect} from 'react-redux'
+import React, { useState } from "react";
+import Select from "react-select";
 
-export default class NewCharacterForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      characterName: '',
-      level: 1,
-      class: '',
-      strength: 8,
-      dexterity: 8,
-      constitution: 8,
-      intelligence: 8,
-      wisdom: 8,
-      charisma: 8
-    }
-  }
+const classOptions = [
+  { value: "barbarian", label: "Barbarian" },
+  { value: "bard", label: "Bard" },
+  { value: "cleric", label: "Cleric" },
+  { value: "druid", label: "Druid" },
+  { value: "fighter", label: "Fighter" },
+  { value: "monk", label: "Monk" },
+  { value: "paladin", label: "Paladin" },
+  { value: "ranger", label: "Ranger" },
+  { value: "rogue", label: "Rogue" },
+  { value: "sorcerer", label: "Sorcerer" },
+  { value: "warlock", label: "Warlock" },
+  { value: "wizard", label: "Wizard" },
+  { value: null, label: "Select" },
+];
 
-  render() {
-    return (
-      <form className="form-container">
-        <div className="form-inner-container">
-          <div className="form-name-level-container">
-            <div className="form-item">
-              <label>Name</label>
-              <input
-                value={this.state.name}
-                onChange={event => {
-                  this.setState({
-                    name: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Level</label>
-              <input
-                value={this.state.level}
-                onChange={event => {
-                  this.setState({
-                    level: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Class</label>
-              <input
-                value={this.state.class}
-                onChange={event => {
-                  this.setState({
-                    class: event.target.value
-                  })
-                }}
-              />
-            </div>
-          </div>
-          <div className="form-str-dex-con-container">
-            <div className="form-item">
-              <label>Strength</label>
-              <input
-                value={this.state.price}
-                onChange={event => {
-                  this.setState({
-                    strength: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Dexterity</label>
-              <input
-                value={this.state.dexterity}
-                onChange={event => {
-                  this.setState({
-                    dexterity: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Constitution</label>
-              <input
-                value={this.state.constitution}
-                onChange={event => {
-                  this.setState({
-                    constitution: event.target.value
-                  })
-                }}
-              />
-            </div>
-          </div>
+const NewCharacterForm = () => {
+  const [newCharacter, setNewCharacter] = useState({
+    characterName: "",
+    level: 1,
+    class: "",
+    strength: 8,
+    dexterity: 8,
+    constitution: 8,
+    intelligence: 8,
+    wisdom: 8,
+    charisma: 8,
+  });
 
-          <div className="form-int-wis-cha-container">
-            <div className="form-item">
-              <label>Intelligence</label>
-              <input
-                value={this.state.intelligence}
-                onChange={event => {
-                  this.setState({
-                    intelligence: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Wisdom</label>
-              <input
-                value={this.state.wisdom}
-                onChange={event => {
-                  this.setState({
-                    wisdom: event.target.value
-                  })
-                }}
-              />
-            </div>
-            <div className="form-item">
-              <label>Charisma</label>
-              <input
-                value={this.state.charisma}
-                onChange={event => {
-                  this.setState({
-                    charisma: event.target.value
-                  })
-                }}
-              />
-            </div>
-          </div>
+  const setNewCharacterHelper = (key, value) => {
+    setNewCharacter({
+      ...newCharacter,
+      [key]: value,
+    });
+  };
 
-          <div className="new-character-form-button">
-            <button
-              className="button"
-              type="submit"
-              onClick={event => {
-                event.preventDefault()
-                this.props.createProduct(this.state)
-                this.setState({
-                  characterName: '',
-                  level: 1,
-                  class: '',
-                  strength: 8,
-                  dexterity: 8,
-                  constitution: 8,
-                  intelligence: 8,
-                  wisdom: 8,
-                  charisma: 8
-                })
+  return (
+    <div className="new-character-form-main-container">
+      <form className="new-character-form-inner-container">
+        <div className="new-character-form-item">
+          <label className="new-character-form-label">Name</label>
+          <input
+            onChange={(event) => {
+              setNewCharacterHelper("characterName", event.target.value);
+            }}
+          />
+        </div>
+        <div className="new-character-form-item">
+          <label className="new-character-form-label">Level</label>
+          <input
+            onChange={(event) => {
+              setNewCharacterHelper("level", event.target.value);
+            }}
+          />
+        </div>
+        <div className="new-character-form-item">
+          <label className="new-character-form-label">Class</label>
+          <Select
+            options={classOptions}
+            className="searchbar-select-input"
+            onChange={(event) => {
+              setNewCharacterHelper("class", event.value);
+            }}
+          />
+        </div>
+
+        <div className="form-str-dex-con-container">
+          <div className="new-character-form-item">
+            <labe className="new-character-form-label"l>Strength</labe>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("strength", event.target.value);
               }}
-            >
-              Create
-            </button>
+            />
+          </div>
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Dexterity</label>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("dexterity", event.target.value);
+              }}
+            />
+          </div>
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Constitution</label>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("constitution", event.target.value);
+              }}
+            />
           </div>
         </div>
+
+        <div className="form-int-wis-cha-container">
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Intelligence</label>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("intelligence", event.target.value);
+              }}
+            />
+          </div>
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Wisdom</label>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("wisdom", event.target.value);
+              }}
+            />
+          </div>
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Charisma</label>
+            <input
+              onChange={(event) => {
+                setNewCharacterHelper("charisma", event.target.value);
+              }}
+            />
+          </div>
+        </div>
+
+        <div className="new-character-form-button">
+          <button
+            className="button"
+            type="submit"
+            onClick={(event) => {
+              event.preventDefault();
+
+              setNewCharacter({
+                characterName: "",
+                level: 1,
+                class: "",
+                strength: 8,
+                dexterity: 8,
+                constitution: 8,
+                intelligence: 8,
+                wisdom: 8,
+                charisma: 8,
+              });
+            }}
+          >
+            Create
+          </button>
+        </div>
       </form>
-    )
-  }
-}
+    </div>
+  );
+};
 
-// const mapDispatch = dispatch => {
-//   return {
-//     createCharacter: newCharacter => {
-//       return dispatch(createCharacter(newCharacter))
-//     }
-//   }
-// }
-
-// export default connect(null, mapDispatch)(NewCharacterForm)
+export default NewCharacterForm;

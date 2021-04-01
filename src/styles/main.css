@@ -183,7 +183,7 @@
 
 .spell-property-header {
   font-weight: bold;
-  color: white;
+  color: black;
 }
 
 /* NavBar*/
@@ -238,8 +238,7 @@
 
 .searchbar_form_input {
   flex-grow: 1;
-  margin-left: .5rem;
-
+  margin-left: 0.5rem;
 }
 
 .searchbar-selector-container {
@@ -274,4 +273,37 @@
   color: white;
   width: 115px;
   display: block;
+}
+
+.searchbar-header-level {
+  margin-left: 1.5rem;
+}
+
+/* New Character Form*/
+
+.new-character-form-main-container {
+
+  /* padding: 0.5rem; */
+  display: flex;
+  /* justify-content: center; */
+  flex-direction: column;
+}
+
+.new-character-form-inner-container {
+  width: 100%;
+  border: solid black 1px;
+    padding: 0.5rem;
+}
+
+.new-character-form-item{
+  padding: .5rem;
+
+}
+
+.new-character-form-label{
+  padding: .5rem;
+}
+
+.new-character-form-label{
+  margin-right: 1.5rem;
 }

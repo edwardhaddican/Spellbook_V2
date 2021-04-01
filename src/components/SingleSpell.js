@@ -20,10 +20,13 @@ const SingleSpell = (props) => {
       } else {
         setError("");
         setCurrentSpell(response.data);
-        setDamageObj(response.data.damage.damage_at_slot_level);
-        setDamageObjKeys(
-          Object.keys(response.data.damage.damage_at_slot_level)
-        );
+
+        if (response.data.damage && response.data.damage.damage_at_slot_level) {
+          setDamageObj(response.data.damage.damage_at_slot_level);
+          setDamageObjKeys(
+            Object.keys(response.data.damage.damage_at_slot_level)
+          );
+        }
       }
     } catch (error) {
       console.log("You have an error", error);
