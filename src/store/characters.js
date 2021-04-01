@@ -55,6 +55,7 @@ export const fetchCharacters = () => {
 export const createCharacter = newCharacterData => {
   return async dispatch => {
     const {data} = await axios.post('/api/characters', newCharacterData)
+    console.log('data in create character', data)
     dispatch(addCharacter(data))
   }
 }

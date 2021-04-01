@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Select from "react-select";
+import { createCharacter } from "../store/characters";
 
 const classOptions = [
   { value: "barbarian", label: "Barbarian" },
@@ -14,7 +15,19 @@ const classOptions = [
   { value: "sorcerer", label: "Sorcerer" },
   { value: "warlock", label: "Warlock" },
   { value: "wizard", label: "Wizard" },
-  { value: null, label: "Select" },
+];
+
+const levelOptions = [
+  { value: 0, label: 0 },
+  { value: 1, label: 1 },
+  { value: 2, label: 2 },
+  { value: 3, label: 3 },
+  { value: 4, label: 4 },
+  { value: 5, label: 5 },
+  { value: 6, label: 6 },
+  { value: 7, label: 7 },
+  { value: 8, label: 8 },
+  { value: 9, label: 9 },
 ];
 
 const NewCharacterForm = () => {
@@ -50,12 +63,15 @@ const NewCharacterForm = () => {
         </div>
         <div className="new-character-form-item">
           <label className="new-character-form-label">Level</label>
-          <input
+          <Select
+            options={levelOptions}
+            className="searchbar-select-input"
             onChange={(event) => {
-              setNewCharacterHelper("level", event.target.value);
+              setNewCharacterHelper("level", event.value);
             }}
           />
         </div>
+
         <div className="new-character-form-item">
           <label className="new-character-form-label">Class</label>
           <Select
@@ -69,7 +85,9 @@ const NewCharacterForm = () => {
 
         <div className="form-str-dex-con-container">
           <div className="new-character-form-item">
-            <labe className="new-character-form-label"l>Strength</labe>
+            <label className="new-character-form-label" >
+              Strength
+            </label>
             <input
               onChange={(event) => {
                 setNewCharacterHelper("strength", event.target.value);
@@ -127,6 +145,8 @@ const NewCharacterForm = () => {
             type="submit"
             onClick={(event) => {
               event.preventDefault();
+              console.log("newCharacter", newCharacter);
+              createCharacter(newCharacter);
 
               setNewCharacter({
                 characterName: "",

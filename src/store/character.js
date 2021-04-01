@@ -31,7 +31,7 @@ export const fetchCharacter = id => {
 // Character Reducer
 const characterReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCT:
+    case SET_CHARACTER:
       return {...state, character: action.product}
     default:
       return state
