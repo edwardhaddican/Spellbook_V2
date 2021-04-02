@@ -42,7 +42,7 @@ const SearchBar = ({
   const [error, setError] = useState("");
 
   const searchBarUpdate = (event) => {
-    setSearch(event);
+    setSearch(event.target.value);
   };
 
   const fetchSpell = async (event) => {
@@ -56,9 +56,7 @@ const SearchBar = ({
         return;
       }
 
-      // if (search) {
-      //   url = url + `&y=${this.state.year}`
-      // }
+
 
       const results = await axios.get(url);
 
@@ -66,8 +64,12 @@ const SearchBar = ({
         setError(results.data.Error);
       } else {
         setError("");
-        this.props.updateSearchResults(results.data.Search);
       }
+
+      console.log("results", results.data)
+      //this returns the correct data, however only if the peron uses the correct name and it is not used yet.
+
+
     } catch (error) {
       console.log("You have an error", error);
     }
@@ -107,7 +109,6 @@ const SearchBar = ({
             options={levelOptions}
             className="searchbar-select-input"
             onChange={(event) => {
-              console.log(event.value);
               setSelectedSpellLevel(event.value);
             }}
           />

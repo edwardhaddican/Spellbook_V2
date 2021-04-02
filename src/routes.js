@@ -10,7 +10,6 @@ import {
   AllSpells,
   SingleSpell,
   CharacterSpellbook,
-  ClassSpells
 } from "./components";
 import { me } from "./store";
 
@@ -50,14 +49,6 @@ class Routes extends Component {
               path="/characters/:characterId"
               component={CharacterSpellbook}
             />
-             <Route
-              exact
-              path="/classSpells/"
-              component={ClassSpells}
-            />
-
-
-
             <Route path="/" component={UserHome} />
           </Switch>
         )}
