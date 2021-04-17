@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Axios from "axios";
 import { SearchBar } from "./index.js";
+import { useSelector, useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
 // import pagination from '../utility/pagination'
 

@@ -36,9 +36,11 @@ router.get("/:id", async (req, res, next) => {
 });
 
 router.post("/", async (req, res, next) => {
+
+  console.log(req.body)
   try {
     const newCharacter = await Character.create({
-      name: req.body.name,
+      name: req.body.characterName,
       level: req.body.level,
       class: req.body.class,
       strength: req.body.strength,
@@ -48,6 +50,7 @@ router.post("/", async (req, res, next) => {
       wisdom: req.body.wisdom,
       charisma: req.body.charisma,
       userId: req.user.id,
+      imageUrl: req.body.imageUrl,
     });
     res.status(201).json(newCharacter);
   } catch (err) {

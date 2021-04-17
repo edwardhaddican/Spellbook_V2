@@ -92,6 +92,10 @@ const Character = db.define("character", {
     type: Sequelize.BOOLEAN,
     defaultValue: false,
   },
+  imageUrl: {
+    type: Sequelize.STRING,
+    defaultValue: "https://cdnb.artstation.com/p/assets/images/images/000/981/689/large/johan-grenier-ork.jpg?1437495031"
+  }
 });
 
 module.exports = Character;

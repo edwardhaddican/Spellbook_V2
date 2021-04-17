@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Select from "react-select";
 import { createCharacter } from "../store/characters";
+import { useDispatch } from "react-redux";
 
 const classOptions = [
   { value: "barbarian", label: "Barbarian" },
@@ -30,7 +31,14 @@ const levelOptions = [
   { value: 9, label: 9 },
 ];
 
+const isPublicOptions = [
+  { value: true, label: "yes" },
+  { value: false, label: "no" }
+]
+
 const NewCharacterForm = () => {
+  const dispatch = useDispatch();
+
   const [newCharacter, setNewCharacter] = useState({
     characterName: "",
     level: 1,
@@ -41,6 +49,7 @@ const NewCharacterForm = () => {
     intelligence: 8,
     wisdom: 8,
     charisma: 8,
+    isPublic: false
   });
 
   const setNewCharacterHelper = (key, value) => {
@@ -85,9 +94,7 @@ const NewCharacterForm = () => {
 
         <div className="form-str-dex-con-container">
           <div className="new-character-form-item">
-            <label className="new-character-form-label" >
-              Strength
-            </label>
+            <label className="new-character-form-label">Strength</label>
             <input
               onChange={(event) => {
                 setNewCharacterHelper("strength", event.target.value);
@@ -137,6 +144,16 @@ const NewCharacterForm = () => {
               }}
             />
           </div>
+          <div className="new-character-form-item">
+            <label className="new-character-form-label">Public Character</label>
+            <Select
+            options={isPublicOptions}
+            className="searchbar-select-input"
+            onChange={(event) => {
+              setNewCharacterHelper("isPublic", event.value);
+            }}
+          />
+          </div>
         </div>
 
         <div className="new-character-form-button">
@@ -146,7 +163,8 @@ const NewCharacterForm = () => {
             onClick={(event) => {
               event.preventDefault();
               console.log("newCharacter", newCharacter);
-              createCharacter(newCharacter);
+
+              dispatch(createCharacter(newCharacter));
 
               setNewCharacter({
                 characterName: "",
@@ -158,6 +176,7 @@ const NewCharacterForm = () => {
                 intelligence: 8,
                 wisdom: 8,
                 charisma: 8,
+                isPublic: false
               });
             }}
           >

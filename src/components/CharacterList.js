@@ -1,35 +1,47 @@
 import React, { useEffect, useState } from "react";
+import { fetchCharacters } from "../store/characters";
+import { useDispatch, useSelector } from "react-redux";
+
 import testCharDataArray from "./dummyCharData";
+
 import { Link } from "react-router-dom";
 
 const CharacterList = () => {
-  const [numberOfCharacters, setNumberOfCharacters] = useState(0);
-  const [allCharacters, setAllCharacters] = useState([]);
+  const dispatch = useDispatch();
+  const allCharacters = useSelector((state) => {
 
+    return state.characters;
+  });
   useEffect(() => {
-    //dummy data:
-    setAllCharacters(testCharDataArray);
-    setNumberOfCharacters(testCharDataArray.length);
+    dispatch(fetchCharacters());
   }, []);
 
+  if (!allCharacters) {
+    return "loading";
+  }
+
+  console.log(allCharacters)
   return (
     <div className="all_characters_outer_container">
       <h1>Characters</h1>
       <span className="all_characters_total_number">
-        Total Characters: {numberOfCharacters}
+        Total Characters: {allCharacters ? allCharacters.length : "loading"}
       </span>
       <div className="all_characters_inner_container">
         {allCharacters.map((character) => {
           return (
-            <div key={character.id + character.characterName} className="character_container">
+            <div
+              key={character.id}
+              className="character_container"
+            >
               <h3>
                 <span className="character_property_header ">
                   Character Name:{" "}
                 </span>
-                {character.characterName}
+                {character.name}
               </h3>
               <div className="image_container">
-                <img src={character.imageUrl} alt="The character's portrait"/>
+                <img src={character.imageUrl} alt="The character's portrait" />
               </div>
               <ul>
                 <span className="character_property_header">Level: </span>
@@ -41,31 +53,31 @@ const CharacterList = () => {
               </ul>
               <ul>
                 <span className="character-property-header ">Strength: </span>{" "}
-                {character.strength}
+                {character.attributeStrength}
               </ul>
               <ul>
                 <span className="character-property-header ">Dexterity: </span>
-                {character.dexterity}
+                {character.attributeDexterity}
               </ul>
               <ul>
                 <span className="character-property-header ">
                   Constitution:{" "}
                 </span>{" "}
-                {character.constitution}
+                {character.attributeConstitution}
               </ul>
               <ul>
                 <span className="character-property-header ">
                   Intelligence:{" "}
                 </span>
-                {character.intelligence}
+                {character.attributeIntelligence}
               </ul>
               <ul>
                 <span className="character-property-header ">Wisdom: </span>
-                {character.wisdom}
+                {character.attributeWisdom}
               </ul>
               <ul>
                 <span className="character-property-header ">Charisma: </span>
-                {character.charisma}
+                {character.attributeCharisma}
               </ul>
               <Link to={`/characters/${character.id}`}>
                 <button className="character-spellbook-button">

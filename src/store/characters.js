@@ -1,109 +1,106 @@
-import axios from 'axios'
-import {setCharacter} from './character'
+import axios from "axios";
+import { setCharacter } from "./character";
 
-const initialState = {
-  characters: []
-}
+const initialState = [];
+//remember to fix the reduceers so that it takes the state and things
 
 // Action Types
-const SET_CHARACTERS = 'SET_CHARACTERS'
-const ADD_CHARACTERS = 'ADD_CHARACTERS'
-const DELETE_CHARACTER = 'DELETE_CHARACTER'
-const EDIT_CHARACTER = 'EDIT_CHARACTER'
+const SET_CHARACTERS = "SET_CHARACTERS";
+const ADD_CHARACTERS = "ADD_CHARACTERS";
+const DELETE_CHARACTER = "DELETE_CHARACTER";
+const EDIT_CHARACTER = "EDIT_CHARACTER";
 
 // Actions Creators
-export const setCharacters = characters => {
+export const setCharacters = (characters) => {
   return {
     type: SET_CHARACTERS,
-    characters
-  }
-}
+    characters,
+  };
+};
 
-export const addCharacter = character => {
+export const addCharacter = (character) => {
   return {
     type: ADD_CHARACTERS,
-    character
-  }
-}
+    character,
+  };
+};
 
-export const removeCharacter = characterId => {
+export const removeCharacter = (characterId) => {
   return {
     type: DELETE_CHARACTER,
-    characterId
-  }
-}
+    characterId,
+  };
+};
 
-export const updateCharacter= character => {
+export const updateCharacter = (character) => {
   return {
     type: EDIT_CHARACTER,
-    character
-  }
-}
+    character,
+  };
+};
 
-// Thunk Creators  pick up from here!!!!!!!!
+// Thunk Creators
 export const fetchCharacters = () => {
-  return async dispatch => {
+  return async (dispatch) => {
     try {
-      const res = await axios.get('/api/characters')
-        dispatch(setCharacters(res.data))
+      const res = await axios.get("/api/characters");
+      dispatch(setCharacters(res.data));
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
-}
+  };
+};
 
-export const createCharacter = newCharacterData => {
-  return async dispatch => {
-    const {data} = await axios.post('/api/characters', newCharacterData)
-    console.log('data in create character', data)
-    dispatch(addCharacter(data))
-  }
-}
+export const createCharacter = (newCharacterData) => {
+  return async (dispatch) => {
+    const { data } = await axios.post("/api/characters", newCharacterData);
+    console.log("data in create character", data);
+    dispatch(addCharacter(data));
+  };
+};
 
-export const deleteCharacter= id => {
-  return async dispatch => {
-    await axios.delete('/api/characters/' + id)
-    dispatch(removeCharacter(id))
-  }
-}
+export const deleteCharacter = (id) => {
+  return async (dispatch) => {
+    await axios.delete("/api/characters/" + id);
+    dispatch(removeCharacter(id));
+  };
+};
 
-export const editCharacter = character => {
-  return async dispatch => {
-    const {data} = await axios.put('/api/characters/' + character.id, character)
-    dispatch(updateCharacter(data))
-    dispatch(setCharacter(data))
-  }
-}
+export const editCharacter = (character) => {
+  return async (dispatch) => {
+    const { data } = await axios.put(
+      "/api/characters/" + character.id,
+      character
+    );
+    dispatch(updateCharacter(data));
+    dispatch(setCharacter(data));
+  };
+};
 
 // Character Reducer
 const charactersReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_CHARACTERS:
-      return {...state, characters: action.characters}
+      return action.characters;
     case ADD_CHARACTERS:
-      return {...state, characters: state.characters.concat([action.character])}
+      return state.concat([action.character]);
     case DELETE_CHARACTER: {
-      const allCharacters = state.characters
-      const filteredCharacters = allCharacters.filter(
-        character => character.id !== action.characterId
-      )
-      state.characters = filteredCharacters
-      return {...state}
+      const filteredCharacters = state.filter(
+        (character) => character.id !== action.characterId
+      );
+      return filteredCharacters;
     }
     case EDIT_CHARACTER:
-      return {
-        ...state,
-        characters: state.characters.map(character => {
-          if (character.id === action.character.id) {
-            return action.character
-          } else {
-            return character
-          }
-        })
-      }
+      return state.map((character) => {
+        if (character.id === action.character.id) {
+          return action.character;
+        } else {
+          return character;
+        }
+      });
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default charactersReducer
+export default charactersReducer;
