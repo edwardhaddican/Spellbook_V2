@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { fetchCharacters } from "../store/characters";
 import { useDispatch, useSelector } from "react-redux";
 
-import testCharDataArray from "./dummyCharData";
-
 import { Link } from "react-router-dom";
 
 const CharacterList = () => {
@@ -12,9 +10,6 @@ const CharacterList = () => {
 
     return state.characters;
   });
-  useEffect(() => {
-    dispatch(fetchCharacters());
-  }, []);
 
   if (!allCharacters) {
     return "loading";
