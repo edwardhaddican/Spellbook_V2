@@ -51,10 +51,11 @@ export const fetchCharacters = () => {
   };
 };
 
-export const createCharacter = (newCharacterData) => {
+export const createCharacter = (newCharacterData, history) => {
   return async (dispatch) => {
     const { data } = await axios.post("/api/characters", newCharacterData);
     console.log("data in create character", data);
+    history.push(`/characters/${data.id}`);
     dispatch(addCharacter(data));
   };
 };

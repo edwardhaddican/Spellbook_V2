@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Select from "react-select";
 import { createCharacter } from "../store/characters";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const classOptions = [
   { value: "barbarian", label: "Barbarian" },
@@ -33,11 +34,13 @@ const levelOptions = [
 
 const isPublicOptions = [
   { value: true, label: "yes" },
-  { value: false, label: "no" }
-]
+  { value: false, label: "no" },
+];
 
 const NewCharacterForm = () => {
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const [newCharacter, setNewCharacter] = useState({
     characterName: "",
@@ -49,7 +52,7 @@ const NewCharacterForm = () => {
     intelligence: 8,
     wisdom: 8,
     charisma: 8,
-    isPublic: false
+    isPublic: false,
   });
 
   const setNewCharacterHelper = (key, value) => {
@@ -96,6 +99,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Strength</label>
             <input
+              value={newCharacter.strength}
               onChange={(event) => {
                 setNewCharacterHelper("strength", event.target.value);
               }}
@@ -104,6 +108,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Dexterity</label>
             <input
+              value={newCharacter.dexterity}
               onChange={(event) => {
                 setNewCharacterHelper("dexterity", event.target.value);
               }}
@@ -112,6 +117,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Constitution</label>
             <input
+              value={newCharacter.constitution}
               onChange={(event) => {
                 setNewCharacterHelper("constitution", event.target.value);
               }}
@@ -123,6 +129,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Intelligence</label>
             <input
+              value={newCharacter.intelligence}
               onChange={(event) => {
                 setNewCharacterHelper("intelligence", event.target.value);
               }}
@@ -131,6 +138,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Wisdom</label>
             <input
+              value={newCharacter.wisdom}
               onChange={(event) => {
                 setNewCharacterHelper("wisdom", event.target.value);
               }}
@@ -139,6 +147,7 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Charisma</label>
             <input
+              value={newCharacter.charisma}
               onChange={(event) => {
                 setNewCharacterHelper("charisma", event.target.value);
               }}
@@ -147,12 +156,12 @@ const NewCharacterForm = () => {
           <div className="new-character-form-item">
             <label className="new-character-form-label">Public Character</label>
             <Select
-            options={isPublicOptions}
-            className="searchbar-select-input"
-            onChange={(event) => {
-              setNewCharacterHelper("isPublic", event.value);
-            }}
-          />
+              options={isPublicOptions}
+              className="searchbar-select-input"
+              onChange={(event) => {
+                setNewCharacterHelper("isPublic", event.value);
+              }}
+            />
           </div>
         </div>
 
@@ -164,20 +173,7 @@ const NewCharacterForm = () => {
               event.preventDefault();
               console.log("newCharacter", newCharacter);
 
-              dispatch(createCharacter(newCharacter));
-
-              setNewCharacter({
-                characterName: "",
-                level: 1,
-                class: "",
-                strength: 8,
-                dexterity: 8,
-                constitution: 8,
-                intelligence: 8,
-                wisdom: 8,
-                charisma: 8,
-                isPublic: false
-              });
+              dispatch(createCharacter(newCharacter, history));
             }}
           >
             Create

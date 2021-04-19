@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { fetchCharacters } from "../store/characters";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Link } from "react-router-dom";
@@ -7,7 +6,6 @@ import { Link } from "react-router-dom";
 const CharacterList = () => {
   const dispatch = useDispatch();
   const allCharacters = useSelector((state) => {
-
     return state.characters;
   });
 
@@ -15,7 +13,7 @@ const CharacterList = () => {
     return "loading";
   }
 
-  console.log(allCharacters)
+  console.log(allCharacters);
   return (
     <div className="all_characters_outer_container">
       <h1>Characters</h1>
@@ -25,10 +23,7 @@ const CharacterList = () => {
       <div className="all_characters_inner_container">
         {allCharacters.map((character) => {
           return (
-            <div
-              key={character.id}
-              className="character_container"
-            >
+            <div key={character.id} className="character_container">
               <h3>
                 <span className="character_property_header ">
                   Character Name:{" "}
