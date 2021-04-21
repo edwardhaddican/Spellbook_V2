@@ -1,5 +1,6 @@
 const User = require('./User')
 const Character = require('./Character')
+const Spell = require('./Spell')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -19,5 +20,5 @@ Character.belongsTo(User)
 User.hasMany(Character)
 
 module.exports = {
-  User, Character
+  User, Character, Spell
 }

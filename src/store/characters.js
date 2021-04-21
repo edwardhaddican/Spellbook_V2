@@ -2,7 +2,6 @@ import axios from "axios";
 import { setCharacter } from "./character";
 
 const initialState = [];
-//remember to fix the reduceers so that it takes the state and things
 
 // Action Types
 const SET_CHARACTERS = "SET_CHARACTERS";

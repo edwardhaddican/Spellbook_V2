@@ -37,6 +37,8 @@ const SingleSpell = (props) => {
     fetchSingleSpell();
   }, []);
 
+  console.log("currentSpell", currentSpell)
+
   return !currentSpell.name ? (
     <h1>Loading...</h1>
   ) : (

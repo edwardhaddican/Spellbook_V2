@@ -14,16 +14,6 @@ const AllSpells = () => {
   const [selectedClass, setSelectedClass] = useState(null);
   const [selectedSpellLevel, setSelectedSpellLevel] = useState(null);
 
-  //trying to make dummy data to get the pagination working
-  // const paginationObject = {
-  //   totalItems: 150,
-  //   currentPage: 1,
-  //   pageSize: 12,
-  //   maxPages: 10
-  // }
-
-  // pagination(paginationObject)
-
   const addSpellToMySpellListButton = () => {
     //add funtionality to add spells to each characters own spell list
 
@@ -92,6 +82,9 @@ const AllSpells = () => {
   //   }
 
   // };
+
+  // console.log("allSpells", allSpells)
+  // console.log("classSpells", classSpells)
 
   return (
     <div>
