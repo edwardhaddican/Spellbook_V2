@@ -38,7 +38,9 @@ const fetchSingleSpell = async (url) => {
         components: data.components,
         material: data.material,
         concentration: data.concentration,
-        damage_at_slot_level: JSON.stringify(data.damage_at_slot_level),
+        damage_at_slot_level: data.damage
+          ? JSON.stringify(data.damage.damage_at_slot_level)
+          : null,
         dc_type: data.dc ? data.dc.dc_type.index : null,
         dc_success: data.dc ? data.dc.dc_success : null,
         damage_type: data.damage
@@ -84,29 +86,5 @@ const allSpellList = async () => {
   }
 };
 
-// const classSpellList = async () => {
-//   try {
-//     let url = "https://www.dnd5eapi.co";
-
-//     const response = await axios.get(url + "/api/classes");
-
-//     const promises = response.data.results.map((element) => {
-//       return axios.get(`${url}${element.url}/spells`);
-//     });
-
-//     const classSpellResults = await Promise.all(promises);
-
-//     const classSpells = classSpellResults.reduce((result, element, index) => {
-//       const playerClass = response.data.results[index].index;
-//       result[playerClass] = element.data.results;
-//       return result;
-//     }, {});
-//     // console.log(classSpells, 'class spells in new script')
-//   } catch (err) {
-//     console.log("You have an error", error);
-//   }
-// };
-
 Spell.sync({ force: true });
 allSpellList();
-// classSpellList();
