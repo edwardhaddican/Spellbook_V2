@@ -1,7 +1,7 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
 
-const Spell = db.define("character", {
+const Spell = db.define("spell", {
   name: {
     type: Sequelize.STRING,
     unique: true,
@@ -13,7 +13,7 @@ const Spell = db.define("character", {
   level: {
     type: Sequelize.INTEGER,
     validate: {
-      min: 1,
+      min: 0,
       max: 9,
     },
   },
@@ -52,14 +52,16 @@ const Spell = db.define("character", {
     type: Sequelize.STRING,
     unique: true,
   },
-
-  attack_type: {
-    type: Sequelize.STRING,
+  description: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
   },
-  area_of_affect_size: {
+  higher_level: {
+    type: Sequelize.ARRAY(Sequelize.TEXT),
+  },
+  area_of_effect_size: {
     type: Sequelize.INTEGER,
   },
-  area_of_affect_type: {
+  area_of_effect_type: {
     type: Sequelize.STRING,
   },
   casting_time: {
@@ -68,29 +70,29 @@ const Spell = db.define("character", {
   components: {
     type: Sequelize.ARRAY(Sequelize.STRING),
   },
+  material: {
+    type: Sequelize.TEXT,
+  },
   concentration: {
     type: Sequelize.BOOLEAN,
   },
-  //DOES THIS WORK? CAN DAMAGE BE AN OBJECT? it needs damage_at_slot_level and damage_type properties
   damage_at_slot_level: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.JSON,
+  },
+  dc_type: {
+    type: Sequelize.STRING,
+  },
+  dc_success: {
+    type: Sequelize.STRING,
   },
   damage_type: {
     type: Sequelize.STRING,
   },
-  description: {
-    type: Sequelize.TEXT,
-  },
+
   duration: {
     type: Sequelize.STRING,
   },
 
-  higher_level: {
-    type: Sequelize.TEXT,
-  },
-  material: {
-    type: Sequelize.STRING,
-  },
   range: {
     type: Sequelize.STRING,
   },

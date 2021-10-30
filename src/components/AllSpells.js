@@ -1,12 +1,21 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Axios from "axios";
 import { SearchBar } from "./index.js";
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchSpells } from "../store/spells";
 // import pagination from '../utility/pagination'
 
 const AllSpells = () => {
-  const [allSpells, setAllSpells] = useState([]);
+  // const [allSpells, setAllSpells] = useState([]);
+  const allSpells = useSelector((state) => {
+    return state.spells;
+  });
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(fetchSpells());
+  // }, []);
   const [error, setError] = useState("");
   const [classSpells, setClassSpells] = useState({});
   const [displayedSpells, setDisplayedSpells] = useState([]);
@@ -20,52 +29,58 @@ const AllSpells = () => {
     console.log("you clicked on the add spell to spell list button");
   };
 
-  const allSpellList = useCallback(async () => {
-    try {
-      let url = "https://www.dnd5eapi.co/api/spells";
 
-      const response = await Axios.get(url);
+  //redo search by class, by spell and by level
 
-      if (response.data.Error) {
-        setError(response.data.Error);
-      } else {
-        setError("");
-        setAllSpells(response.data.results);
-        setClassSpells(response.data.results);
-      }
-    } catch (error) {
-      console.log("You have an error", error);
-    }
-  }, [setAllSpells, setClassSpells, setError]);
 
-  const classSpellList = useCallback(async () => {
-    try {
-      let url = "https://www.dnd5eapi.co";
+  // const allSpellList = useCallback(async () => {
+  //   try {
+  //     let url = "https://www.dnd5eapi.co/api/spells";
 
-      const response = await Axios.get(url + "/api/classes");
+  //     const response = await Axios.get(url);
 
-      const promises = response.data.results.map((element) => {
-        return Axios.get(`${url}${element.url}/spells`);
-      });
+  //     if (response.data.Error) {
+  //       setError(response.data.Error);
+  //     } else {
+  //       setError("");
+  //       setAllSpells(response.data.results);
+  //       setClassSpells(response.data.results);
+  //     }
+  //   } catch (error) {
+  //     console.log("You have an error", error);
+  //   }
+  // }, [setAllSpells, setClassSpells, setError]);
 
-      const classSpellResults = await Promise.all(promises);
+  // const classSpellList = useCallback(async () => {
+  //   try {
+  //     let url = "https://www.dnd5eapi.co";
 
-      const classSpells = classSpellResults.reduce((result, element, index) => {
-        const playerClass = response.data.results[index].index;
-        result[playerClass] = element.data.results;
-        return result;
-      }, {});
-      setClassSpells(classSpells);
-    } catch (err) {
-      setError(err);
-      console.log("You have an error", error);
-    }
-  }, [setClassSpells, setError]);
+  //     const response = await Axios.get(url + "/api/classes");
 
-  useEffect(() => {
-    allSpellList();
-    classSpellList();
-  }, [allSpellList, classSpellList]);
+  //     const promises = response.data.results.map((element) => {
+  //       return Axios.get(`${url}${element.url}/spells`);
+  //     });
+
+  //     const classSpellResults = await Promise.all(promises);
+
+  //     const classSpells = classSpellResults.reduce((result, element, index) => {
+  //       const playerClass = response.data.results[index].index;
+  //       result[playerClass] = element.data.results;
+  //       return result;
+  //     }, {});
+  //     setClassSpells(classSpells);
+  //   } catch (err) {
+  //     setError(err);
+  //     console.log("You have an error", error);
+  //   }
+  // }, [setClassSpells, setError]);
+
+  // useEffect(() => {
+  //   allSpellList();
+  //   classSpellList();
+  // }, [allSpellList, classSpellList]);
+
+
 
   const makeFirstLetterCap = (currentSelectedClass) => {
     const arrayOfLetters = currentSelectedClass.split("");

@@ -12,8 +12,21 @@ const CharacterSpellbook = (props) => {
     return state.characters;
   });
 
-
+console.log(currentCharacterId)
   console.log(allCharacters)
+
+  // const currentCharacterData = allCharacters.find((char) => {
+
+  //   console.log(char)
+  //   if(char.id === currentCharacterId){
+  //     return true
+  //   }
+
+  // })
+
+  const currentCharacterData = allCharacters.find(char => char.id === Number(currentCharacterId))
+
+  console.log(currentCharacterData)
 
 
 

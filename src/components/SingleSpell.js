@@ -1,45 +1,25 @@
-import React, { useState, useEffect, useCallback } from "react";
-import Axios from "axios";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 const SingleSpell = (props) => {
-  const [currentSpell, setCurrentSpell] = useState({});
   const [error, setError] = useState("");
   const [damageObj, setDamageObj] = useState({});
   const [damageObjKeys, setDamageObjKeys] = useState([]);
 
   let spellIndex = props.match.params.spellIndex;
 
-  const fetchSingleSpell = useCallback(async () => {
-    try {
-      let url = "https://www.dnd5eapi.co/api/spells/";
+  const allSpells = useSelector((state) => {
+    return state.spells;
+  });
 
-      const response = await Axios.get(url + spellIndex);
+  const currentSpell = allSpells
+    ? allSpells.find((spell) => {
+        console.log(spell);
+        return spell.index === spellIndex;
+      })
+    : null;
 
-      if (response.data.Error) {
-        setError(response.data.Error);
-      } else {
-        setError("");
-        setCurrentSpell(response.data);
-
-        if (response.data.damage && response.data.damage.damage_at_slot_level) {
-          setDamageObj(response.data.damage.damage_at_slot_level);
-          setDamageObjKeys(
-            Object.keys(response.data.damage.damage_at_slot_level)
-          );
-        }
-      }
-    } catch (error) {
-      console.log("You have an error", error);
-    }
-  }, [spellIndex]);
-
-  useEffect(() => {
-    fetchSingleSpell();
-  }, []);
-
-  console.log("currentSpell", currentSpell)
-
-  return !currentSpell.name ? (
+  return !currentSpell || !currentSpell.name ? (
     <h1>Loading...</h1>
   ) : (
     <div className="single-spell-container">
@@ -48,31 +28,54 @@ const SingleSpell = (props) => {
         <span className="spell-property-header">Spell Level:</span>{" "}
         {currentSpell.level === 0 ? "Cantrip" : currentSpell.level}
       </p>
+
+      {currentSpell.school ? (
+        <p>
+          {" "}
+          <span className="spell-property-header">School: </span>{" "}
+          {currentSpell.school}
+        </p>
+      ) : null}
+
       <p>
         {" "}
         <span className="spell-property-header">Casting Time:</span>{" "}
         {currentSpell.casting_time}
       </p>
 
-      {currentSpell.damage ? (
-        <div>
-          <p>
-            {" "}
-            <span className="spell-property-header">Damage Type:</span>{" "}
-            {currentSpell.damage.damage_type.name}
-          </p>
-          {damageObjKeys.map((key) => {
-            return (
-              <p key={key}>
-                {" "}
-                <span className="spell-property-header">
-                  Damage at Level {key}:{" "}
-                </span>
-                {damageObj[key]}
-              </p>
-            );
-          })}
-        </div>
+      {currentSpell.damage_type ? (
+        <p>
+          <span className="spell-property-header">Damage Type: </span>
+          {currentSpell.damage_type}
+        </p>
+      ) : null}
+
+      {currentSpell.area_of_effect_size ? (
+        <p>
+          <span className="spell-property-header">Area of Effect Size: </span>
+          {currentSpell.area_of_effect_size}
+        </p>
+      ) : null}
+
+      {currentSpell.area_of_effect_type ? (
+        <p>
+          <span className="spell-property-header">Area of Effect Type: </span>
+          {currentSpell.area_of_effect_type}
+        </p>
+      ) : null}
+
+      {currentSpell.dc_type ? (
+        <p>
+          <span className="spell-property-header">DC Type: </span>
+          {currentSpell.dc_type}
+        </p>
+      ) : null}
+
+      {currentSpell.dc_success ? (
+        <p>
+          <span className="spell-property-header">Damage Type: </span>
+          {currentSpell.dc_success}
+        </p>
       ) : null}
 
       {currentSpell.higher_level ? (
@@ -82,6 +85,29 @@ const SingleSpell = (props) => {
           {currentSpell.higher_level[0]}
         </p>
       ) : null}
+
+      {currentSpell.damage_at_slot_level
+        ? Object.keys(JSON.parse(currentSpell.damage_at_slot_level)).map(
+            (key) => {
+              const value = JSON.parse(currentSpell.damage_at_slot_level)[key];
+              return (
+                <p key={value}>
+                  <span className="spell-property-header">Level {key}:</span>{" "}
+                  {value}
+                </p>
+              );
+            }
+          )
+        : null}
+
+      {currentSpell.range ? (
+        <p>
+          {" "}
+          <span className="spell-property-header">Range: </span>{" "}
+          {currentSpell.range}
+        </p>
+      ) : null}
+
       <p>
         <span className="spell-property-header">Duration: </span>{" "}
         {currentSpell.duration}
@@ -106,8 +132,16 @@ const SingleSpell = (props) => {
       <p>
         {" "}
         <span className="spell-property-header">Description:</span>{" "}
-        {currentSpell.desc}
+        {currentSpell.description.join("\n")}
       </p>
+
+      {currentSpell.ritual ? (
+        <p>
+          {" "}
+          <span className="spell-property-header">Ritual: </span>{" "}
+          {currentSpell.ritual}
+        </p>
+      ) : null}
     </div>
   );
 };

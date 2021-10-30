@@ -6,6 +6,7 @@
   "scripts": {
     "build": "react-scripts build && mv build ./server/public",
     "seed": "node script/seed.js",
+    "seed-spells": "node script/fetchSpells.js",
     "start-dev": "NODE_ENV='development' react-scripts start",
     "start": "NODE_ENV='production' npm run build & NODE_ENV='production' npm run start-server",
     "start-server": "nodemon server -e html,js,scss --ignore public --ignore src"
